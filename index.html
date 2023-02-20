@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR.js Screenshot Example</title>
-    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-    <script src="https://rawgit.com/mayognaise/aframe-screenshot-components/master/dist/aframe-screenshot-components.min.js"></script>
+   <title>AR.js Screenshot Example</title>
+   <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+   <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+   <script src="https://rawgit.com/mayognaise/aframe-screenshot-components/master/dist/aframe-screenshot-components.min.js"></script>
   </head>
-  <body style="margin: 0px; overflow: hidden;">
-    <a-scene embedded vr-mode-ui="enabled:false;" arjs="debugUIEnabled:true; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.6;">
-      <a-marker type='pattern' url='pattern-shiroharaAR.patt'>
-        <a-entity geometry="primitive:plane; height:2; width:2;"
-                  material="src:url(toku.png); color:white; opacity:1"
-                  scale="2 2 2"></a-entity>
-        <a-entity id="camera" camera position="0 1.6 0" screenshot>
-          <a-entity id="screenshotButton" geometry="primitive: plane; height: 0.3; width: 0.3"
-                    material="color: #333; opacity: 0.6"
-                    position="0 -0.3 -1" rotation="-10 0 0" cursor-listener>
-            <a-text value="Screenshot" align="center" position="0 0.1 0"></a-text>
-          </a-entity>
+  
+  <body style="margin : 0px; overflow: hidden;">
+
+    <a-scene embedded vr-mode-ui="enabled:false;" arjs="debugUIEnabled:true; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.6; sourceType: webcam; trackingMethod: best;">
+
+      <a-entity camera position="0 1.6 0" screenshot>
+        <a-entity id="screenshotButton" geometry="primitive: plane; height: 0.3; width: 1.2;"
+                  material="color: #333; opacity: 0.6"
+                  position="0 -1 -1.5" rotation="-10 0 0" cursor-listener>
+          <a-text value="Screenshot" align="center" position="0 0.1 0"></a-text>
         </a-entity>
-      </a-marker>
-      <a-entity camera></a-entity>
+      </a-entity>
+      
+      <a-entity 
+        geometry="primitive:plane; height:2; width:2;"
+        material="src:url(toku.png); color:white; opacity:1"
+        scale="2 2 2"
+      >
+      </a-entity>
+
     </a-scene>
+    
     <script>
       AFRAME.registerComponent('cursor-listener', {
         init: function () {
@@ -34,5 +40,6 @@
         }
       });
     </script>
+    
   </body>
 </html>
